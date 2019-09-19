@@ -17,5 +17,10 @@ public class MainOrientado {
         
         JogoDaVelha jogo = new JogoDaVelha(3, pedro, manu);
         jogo.printNaTela();
+        Player turnOf = jogo.proximoJogador();
+        int jogada = turnOf.nextPlay();
+        jogo.marcarJogada(jogada);
+        jogo.printNaTela();
+        
     }
 }

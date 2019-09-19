@@ -18,10 +18,11 @@ public class Casa {
     public Casa() {
     }
     
-    public boolean mark(Player p) {
-        if (this.owner == null) {
+    public boolean marcar(Player p) {
+        if (this.isOccupied) {
             return false;
         }
+        this.isOccupied = true;
         this.owner = p;
         return true;
     }
@@ -31,5 +32,9 @@ public class Casa {
             return "_";
         }
         return this.owner.toString();
+    }
+    
+    public boolean isFree() {
+        return !this.isOccupied;
     }
 }

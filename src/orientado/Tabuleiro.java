@@ -32,16 +32,19 @@ public class Tabuleiro {
         for (int i = 0; i < this.size; i++) {
             ArrayList<Casa> casasLine = new ArrayList<>();
             for (int k = 0; k < this.size; k++) {
-                casasLine.add(this.casas.get(i+k));
+                casasLine.add(this.casas.get(i*this.size + k));
             }
             casas.add(casasLine);
         }
         return casas;
     }
     
+    public boolean isFree(int posicao) {
+        return this.casas.get(posicao).isFree();
+    }
     
-    
-    
-    
+    public boolean marcarJogada(int posicao, Player p) {
+        return this.casas.get(posicao).marcar(p);
+    }
     
 }

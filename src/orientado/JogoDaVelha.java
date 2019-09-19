@@ -14,15 +14,16 @@ import java.util.ArrayList;
  */
 public class JogoDaVelha {
     
-    private int size;
+    private final int size;
     private Tabuleiro tabuleiro;
-    private Player pOne;
-    private Player PTwo;
+    private final Player pOne;
+    private final Player pTwo;
+    private Player turnOf = null;
 
     public JogoDaVelha(int size, Player pOne, Player PTwo) {
         this.size = size;
         this.pOne = pOne;
-        this.PTwo = PTwo;
+        this.pTwo = PTwo;
         
         this.tabuleiro = new Tabuleiro(this.size);
     }
@@ -33,11 +34,28 @@ public class JogoDaVelha {
     
     public void printNaTela() {
         ArrayList<ArrayList<Casa>> casas = this.tabuleiro.inBlock();
-        for (ArrayList<Casa> line : casas) {
-            for (Casa casa : line) {
-                System.out.print(casa.value() + " ");
+        for (int i = 0; i < casas.size(); i++) {
+            ArrayList<Casa> linha = casas.get(i);
+            for (int k = 0; k < linha.size(); k++) {
+                System.out.print(linha.get(k).value() + " ");
             }
             System.out.println();
         }
+    }
+    
+    public boolean marcarJogada(int jogada) {
+        if (this.tabuleiro.isFree(jogada)) {
+            return this.tabuleiro.marcarJogada(jogada, this.turnOf);
+        }
+        return false;
+    }
+    
+    public Player proximoJogador() {
+        if (this.turnOf != this.pOne) {
+            this.turnOf = this.pOne;
+            return this.turnOf;
+        }
+        this.turnOf = this.pTwo;
+        return this.turnOf;
     }
 }

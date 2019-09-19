@@ -1,5 +1,7 @@
 package orientado;
 
+import java.util.Scanner;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,6 +15,7 @@ package orientado;
 public class Player {
     
     private String name;
+    private final Scanner scanner = new Scanner(System.in);
     private String symbol;
     private int games = 0;
     private int victories = 0;
@@ -32,6 +35,12 @@ public class Player {
     
     public int defeatsCount() {
         return this.games - this.victories;
+    }
+    
+    public int nextPlay() {
+        int jogada = scanner.nextInt();
+        scanner.close();
+        return jogada;
     }
 
     @Override
