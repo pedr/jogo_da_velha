@@ -58,4 +58,19 @@ public class JogoDaVelha {
         this.turnOf = this.pTwo;
         return this.turnOf;
     }
+    
+    public Player verificarSeTerminou() {
+        if (this.tabuleiro.alguemGanhou()) {
+            return this.turnOf;
+        }
+        return null;
+    }
+    
+    public void declararVencedor(Player winner) {
+        System.out.println("Parabéns " + winner.getName() + " você venceu!");
+    }
+    
+    public boolean empatou() {
+        return this.tabuleiro.estaCheio();
+    }
 }

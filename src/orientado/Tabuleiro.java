@@ -47,4 +47,49 @@ public class Tabuleiro {
         return this.casas.get(posicao).marcar(p);
     }
     
+    public boolean alguemGanhou() {
+        for (int i = 0; i < this.size; i++) {
+            int base = i * this.size;
+            if (verificarCasas(casas.get(base), casas.get(base + 1), casas.get(base + 2))) {
+                return true;
+            }
+        }
+
+        for (int i = 0; i < this.size; i++) {
+            if (verificarCasas(casas.get(i + this.size * 0), casas.get(i + this.size * 1), casas.get(i + this.size * 2))) {
+                return true;
+            }
+        }
+        
+        if (verificarCasas(casas.get(0), casas.get(4), casas.get(8))) {
+            return true;
+        }
+        
+        
+        if (verificarCasas(casas.get(2), casas.get(4), casas.get(6))) {
+            return true;
+        }
+        
+        return false;
+    }
+    
+    private boolean verificarCasas(Casa um, Casa dois, Casa tres) {
+        if (um.isFree() || dois.isFree() || tres.isFree()) {
+            return false;
+        }
+        if (um.getOwner() == dois.getOwner() && dois.getOwner() == tres.getOwner()) {
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean estaCheio() {
+        for (Casa casa : casas) {
+            if (casa.isFree()) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
 }

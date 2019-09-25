@@ -34,6 +34,10 @@ public class Casa {
         return this.owner.toString();
     }
     
+    public Player getOwner() {
+        return this.owner;
+    }
+    
     public boolean isFree() {
         return !this.isOccupied;
     }

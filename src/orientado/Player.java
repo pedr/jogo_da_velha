@@ -39,8 +39,11 @@ public class Player {
     
     public int nextPlay() {
         int jogada = scanner.nextInt();
-        scanner.close();
         return jogada;
+    }
+    
+    public String getName() {
+        return this.name;
     }
 
     @Override
